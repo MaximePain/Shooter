@@ -64,6 +64,8 @@ public:
 
 	bool touchBullet = false;
 	int points = 0;
+	int vies = 3;
+	float fov = 5;
 
 private:
 	void addPos(float x, float y, float coeff = 6);
@@ -73,7 +75,6 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	double PI = 3.14159265358979323846;
-	int vies = 3;
 	bool alreadyShoot = false;
 	float largeur = 40;
 	float hauteur = 40;
@@ -83,7 +84,6 @@ private:
 	std::vector<int> dataPosType;
 	std::vector<Shooter*> entityList;
 	
-	float fov = 5;
 	int fovl = 1200;
 	sf::RectangleShape line1, line2;
 	bool firstShoot = true;

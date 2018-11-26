@@ -5,12 +5,17 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-//#include <Windows.h>
+#include <Windows.h>
 #include "shooter.h"
-#include <math.h>
+#include <cmath>
 #include <vector>
 #include "balle.h"
-#include "../../AI/Lia/Lia v1/Lia v1/Lia.h"
+#ifdef PORTABLE
+#include "../../Lia/Lia v1/Lia.h"
+#else
+#include "../../&AI/Lia/Lia v1/Lia v1/Lia.h"
+#endif // PORTABLE
+
 
 
 Shooter entity1;
@@ -55,7 +60,7 @@ int main()
 	std::string neuronBase;
 	std::getline(std::cin, neuronBase);
 	if (neuronBase.size() < 3)
-		neuronBase = "0:0!0|1:0!0|"; //0:0!0|1:0!0|2:10!0|2:10!0|2:10!0|2:10!0|2:10!0|
+		neuronBase = "0:0!0|0:0!0|0:0!0|0:0!0|1:0!0|1:0!0|1:0!0|1:0!0|"; //0:0!0|1:0!0|2:10!0|2:10!0|2:10!0|2:10!0|2:10!0|
 	Lia LIA(neuronBase);
 	Lia LIA2(neuronBase);
 
@@ -67,7 +72,7 @@ int main()
 	window.setVerticalSyncEnabled(true);
 
 	entity1.setPos(100, 100);
-	entity2.setPos(500, 200);
+	entity2.setPos(500, 150);
 	entity2.rotation = 180;
 
 	sf::RectangleShape mur;
@@ -76,6 +81,9 @@ int main()
 	mur.setSize(sf::Vector2f(20, 20));
 
 	LIA.addInput(&entity1.see);
+	LIA.addInput(&entity1.points);
+	LIA.addInput(&entity1.vies);
+	LIA.addInput(&(int&)entity1.fov);
 	LIA.addOutput(&avancer);
 	LIA.addOutput(&turnRight);
 	LIA.addOutput(&turnLeft);
@@ -83,6 +91,9 @@ int main()
 	LIA.addOutput(&fieldOfView);
 	
 	LIA2.addInput(&entity2.see);
+	LIA2.addInput(&entity2.points);
+	LIA2.addInput(&entity2.vies);
+	LIA2.addInput(&(int&)entity2.fov);
 	LIA2.addOutput(&avancer2);
 	LIA2.addOutput(&turnRight2);
 	LIA2.addOutput(&turnLeft2);
@@ -143,11 +154,11 @@ int main()
 
 			//std::cout << "posX: " << entity1.posX << std::endl << "posY: " << entity1.posY << std::endl;
 
-			LIA.firstGen();
+			//LIA.firstGen();
 			LIA2.firstGen();
 			entity1.update();
 			entity2.update();
-			LIA.update();
+			//LIA.update();
 			LIA2.update();
 
 			if (entity1.isShooting())
@@ -203,25 +214,25 @@ int main()
 			//std::cout << entity1.points << std::endl;
 			if (entity1.points > 0 || entity2.points > 0)
 				timeMax = 1000;
-			if (entity1.points > 3 || entity2.points > 3)
+			else if (entity1.points > 3 || entity2.points > 3)
 				timeMax = 3000;
 			else
 				timeMax = 60;
 			if (entity1.isDead || entity2.isDead || time > timeMax)
 			{
-				LIA.addScore(entity1.points);
+				//LIA.addScore(entity1.points);
 				LIA2.addScore(entity2.points);
 				//std::cout << LIA.debug() << std::endl << entity2.points << std::endl;
 				entity2.rotation = 180;
-				entity2.setPos(500, 200);
+				entity2.setPos(500, 150);
 				entity1.setPos(100, 100);
 				entity1.rotation = 0;
 				time = 0;
-				if (!LIA.newGenom()) {
+				/*if (!LIA.newGenom()) {
 					std::cout << LIA.debug() << " - ";
 					std::cout << entity1.points << std::endl;
 					LIA.newGeneration();
-				}
+				}*/
 
 				if (!LIA2.newGenom()) {
 					std::cout << LIA2.debug() << " - ";
@@ -233,8 +244,8 @@ int main()
 			}
 			time++;
 		}
-		else
-			sf::sleep(sf::milliseconds(10));
+		//else
+			//sf::sleep(sf::milliseconds(10));
 	}
 
 	return 0;

@@ -36,13 +36,13 @@
     <ClInclude Include="MathsMax.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Lia\Lia v1\Lia v1\Lia.h">
+    <ClInclude Include="..\..\Lia\Lia v1\Neurons.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Lia\Lia v1\Lia v1\Neurons.h">
+    <ClInclude Include="..\..\Lia\Lia v1\IA.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Lia\Lia v1\Lia v1\IA.h">
+    <ClInclude Include="..\..\Lia\Lia v1\Lia.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,13 +62,13 @@
     <ClCompile Include="wall.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Lia\Lia v1\Lia v1\Neurons.cpp">
+    <ClCompile Include="..\..\Lia\Lia v1\IA.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Lia\Lia v1\Lia v1\IA.cpp">
+    <ClCompile Include="..\..\Lia\Lia v1\Lia.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Lia\Lia v1\Lia v1\Lia.cpp">
+    <ClCompile Include="..\..\Lia\Lia v1\Neurons.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
